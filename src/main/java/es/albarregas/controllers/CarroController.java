@@ -95,9 +95,10 @@ public class CarroController extends HttpServlet {
                 request.getRequestDispatcher("JSP/tienda.jsp").forward(request, response);
             break;
         }
-
+            
         if (!"terminar".equals(botonValue[0])) {
             if (carrito.isEmpty()) {
+                request.getSession().setAttribute("disabled", "disabled");
                 request.getSession().removeAttribute("carrito");
                 request.getRequestDispatcher("JSP/tienda.jsp").forward(request, response);
             } else {
