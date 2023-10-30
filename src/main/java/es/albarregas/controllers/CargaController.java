@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.albarregas.beans.Articulo;
-import es.albarregas.models.Calculator;
+import es.albarregas.models.Metodos;
 
 /**
  *
@@ -35,12 +35,12 @@ public class CargaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Calculator calculator = new Calculator();
+        Metodos metodos = new Metodos();
         String disabled = "";
         LinkedList<Articulo> carrito = (LinkedList<Articulo>) request.getSession().getAttribute("carrito");
         Cookie[] cookies = request.getCookies();
         if (carrito != null || cookies != null) {
-            carrito = calculator.buscarCarritoEnCookies(cookies);
+            carrito = metodos.buscarCarritoEnCookies(cookies);
             if (carrito == null) {
                 disabled = "disabled";
             }

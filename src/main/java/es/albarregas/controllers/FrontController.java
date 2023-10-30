@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.albarregas.beans.Articulo;
-import es.albarregas.models.Calculator;
+import es.albarregas.models.Metodos;
 
 /**
  *
@@ -61,7 +61,7 @@ public class FrontController extends HttpServlet {
 
         Iterator<Articulo> iterator = carrito.iterator();
         boolean found = false;
-        Calculator calc = new Calculator();
+        Metodos metodos = new Metodos();
         String botonPulsado = request.getParameter("button");
         String cantidad = request.getParameter("cantidad");
         String productos = request.getParameter("productos");
@@ -98,7 +98,7 @@ public class FrontController extends HttpServlet {
                 if(carrito.isEmpty()){
                     request.getSession().setAttribute("disabled", "disabled");
                 }
-                Cookie carritoCookie = new Cookie("carritoCookie", calc.listToCookie(carrito));
+                Cookie carritoCookie = new Cookie("carritoCookie", metodos.listToCookie(carrito));
                 carritoCookie.setMaxAge(86400);
                 response.addCookie(carritoCookie);
                 request.getSession().setAttribute("carrito", carrito);

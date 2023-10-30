@@ -23,12 +23,12 @@ import es.albarregas.beans.Articulo;
  *
  * @author Pedro Lazaro
  */
-public class Calculator {
+public class Metodos {
 
     /**
      * Constructor por defecto de la clase Calculator.
      */
-    public Calculator() {
+    public Metodos() {
     }
 
     /**
@@ -100,7 +100,7 @@ public class Calculator {
         LinkedList<Articulo> carrito = null;
         for (Cookie c : cookies) {
             if (c.getName().equals("carritoCookie")) {
-                carrito = new Calculator().cookietoList(c.getValue());
+                carrito = cookietoList(c.getValue());
             }
         }
         return carrito;
