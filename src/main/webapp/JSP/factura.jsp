@@ -6,8 +6,8 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="calculator" scope="page" 
-    class="es.albarregas.models.Calculator" />
+<jsp:useBean id="metodos" scope="page" 
+    class="es.albarregas.models.Metodos" />
 <!DOCTYPE html>
 <html>
 <c:set var="carrito" value="${sessionScope.carrito}"/>
