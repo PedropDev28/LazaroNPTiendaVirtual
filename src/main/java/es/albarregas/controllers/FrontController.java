@@ -26,7 +26,6 @@ import es.albarregas.models.Metodos;
 public class FrontController extends HttpServlet {
 
 
-
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -51,7 +50,7 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
+        Metodos metodos = new Metodos();
         LinkedList<Articulo> carrito = new LinkedList<>();
 
         if (request.getSession().getAttribute("carrito") != null) {
@@ -60,7 +59,6 @@ public class FrontController extends HttpServlet {
 
         Iterator<Articulo> iterator = carrito.iterator();
         boolean found = false;
-        Metodos metodos = new Metodos();
         String botonPulsado = request.getParameter("button");
         String cantidad = request.getParameter("cantidad");
         String productos = request.getParameter("productos");
@@ -97,9 +95,7 @@ public class FrontController extends HttpServlet {
                 if(carrito.isEmpty()){
                     request.getSession().setAttribute("disabled", "disabled");
                 }
-                Cookie carritoCookie = new Cookie("carritoCookie", metodos.listToCookie(carrito));
-                carritoCookie.setMaxAge(86400);
-                response.addCookie(carritoCookie);
+                metodos.crearCookie("carritoCookie", metodos.listToCookie(carrito), 86400, response);
                 request.getSession().setAttribute("carrito", carrito);
                 request.setAttribute("cantidad", cantidad);
                 request.setAttribute("nombre", productos.split(",")[1]);

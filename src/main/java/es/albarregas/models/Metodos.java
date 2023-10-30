@@ -13,6 +13,7 @@ import java.net.URLEncoder;
 import java.util.LinkedList;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import es.albarregas.beans.Articulo;
 
@@ -89,8 +90,7 @@ public class Metodos {
      * Busca una cookie con nombre "carritoCookie" en la matriz de cookies y la
      * convierte en una lista de objetos Articulo.
      *
-     * @param cookies La matriz de cookies en la que se buscará la cookie del
-     *                carrito.
+     * @param cookies La matriz de cookies en la que se buscará la cookie.
      * @return Una lista de objetos Articulo que representa el carrito de compra
      *         encontrado en la cookie.
      * @throws UnsupportedEncodingException Si se produce un error al decodificar la
@@ -106,6 +106,42 @@ public class Metodos {
         return carrito;
     }
 
+    /**
+     * Comprueba si existe una cookie con el nombre especificado en la matriz de
+     * cookies.
+     *
+     * @param cookies La matriz de cookies en la que se buscará la cookie.
+     * @param nombre  El nombre de la cookie que se buscará.
+     * @return true si la cookie existe, false si no.
+     */
+    public boolean existeCookie(Cookie[] cookies, String nombre) {
+        for (Cookie c : cookies) {
+            if (c.getName().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Cambia el tiempo de vida de una cookie con el nombre especificado en la
+     * matriz de cookies.
+     *
+     * @param cookies  La matriz de cookies en la que se buscará la cookie.
+     * @param nombre   El nombre de la cookie que se buscará.
+     * @param maxAge   El nuevo tiempo de vida de la cookie en segundos. Un valor
+     *                 negativo indica que la Cookie es temporal y se eliminará al
+     *                 cerrar el navegador.
+     * @param response La respuesta HTTP a la que se agregará la Cookie.
+     */
+    public void cambiarAgeCookie(Cookie[] cookies, String nombre, int maxAge, HttpServletResponse response) {
+        for (Cookie c : cookies) {
+            if (c.getName().equals(nombre)) {
+                c.setMaxAge(maxAge);
+                response.addCookie(c);
+            }
+        }
+    }
     /**
      * Calcula el costo total multiplicando el precio unitario por la cantidad.
      *
@@ -139,5 +175,24 @@ public class Metodos {
     public double resultadoTotal(double total, double iva) {
         double resultado = total + iva;
         return Math.round(resultado * 100.0) / 100.0;
+    }
+
+    /**
+     * Crea una nueva Cookie con el nombre, valor y tiempo de vida especificados,
+     * y la agrega a la respuesta HTTP.
+     *
+     * @param nombre   El nombre de la Cookie.
+     * @param valor    El valor de la Cookie.
+     * @param maxAge   El tiempo de vida de la Cookie en segundos. Un valor negativo
+     *                 indica que la Cookie es temporal y se eliminará al cerrar el
+     *                 navegador.
+     * @param response La respuesta HTTP a la que se agregará la Cookie.
+     * @return La Cookie recién creada.
+     */
+    public Cookie crearCookie(String nombre, String valor, int maxAge, HttpServletResponse response) {
+        Cookie cookie = new Cookie(nombre, valor);
+        cookie.setMaxAge(maxAge);
+        response.addCookie(cookie);
+        return cookie;
     }
 }

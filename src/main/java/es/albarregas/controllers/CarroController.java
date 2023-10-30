@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.albarregas.beans.Articulo;
+import es.albarregas.models.Metodos;
 
 /**
  *
@@ -22,7 +23,6 @@ import es.albarregas.beans.Articulo;
  */
 @WebServlet(name = "CarroController", urlPatterns = {"/CarroController"})
 public class CarroController extends HttpServlet {
-
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -48,6 +48,7 @@ public class CarroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Metodos metodos = new Metodos();
         LinkedList<Articulo> carrito = (LinkedList<Articulo>) request.getSession().getAttribute("carrito");
         String boton = request.getParameter("button");
         String[] botonValue = boton.split(",");
@@ -86,11 +87,8 @@ public class CarroController extends HttpServlet {
             case "terminar": 
                 request.getSession().removeAttribute("carrito");
                 Cookie[] cookies = request.getCookies();
-                for (Cookie c : cookies) {
-                    if (c.getName().equals("carritoCookie")) {
-                        c.setMaxAge(0);
-                        response.addCookie(c);
-                    }
+                if(metodos.existeCookie(cookies, "carritoCookie")){
+                    metodos.cambiarAgeCookie(cookies, "carritoCookie", 0, response);
                 }
                 request.getRequestDispatcher("JSP/tienda.jsp").forward(request, response);
             break;
