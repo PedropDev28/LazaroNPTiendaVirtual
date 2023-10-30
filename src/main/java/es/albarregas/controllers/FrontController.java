@@ -58,7 +58,6 @@ public class FrontController extends HttpServlet {
             carrito = (LinkedList<Articulo>) request.getSession().getAttribute("carrito");
         }
 
-
         Iterator<Articulo> iterator = carrito.iterator();
         boolean found = false;
         Metodos metodos = new Metodos();
