@@ -4,13 +4,13 @@
     Author     : Pedro Lazaro
 --%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
 <c:set var="contextPath" value='${pageContext.request.contextPath}' scope="session"/>
 <!DOCTYPE html>
 <html>
 <html lang="es">
     <head>
-        <%@include file="/INC/metas.inc"%>
+        <jsp:directive.include file="/INC/metas.inc"/>
         <meta http-equiv="Refresh" content="3;url=CargaController">
         <link rel="shortcut icon" href="./IMG/ico.png" type="image/x-icon">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

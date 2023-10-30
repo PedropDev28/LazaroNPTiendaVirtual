@@ -5,7 +5,7 @@
 --%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
 <jsp:useBean id="metodos" scope="page" 
     class="es.albarregas.models.Metodos" />
 <!DOCTYPE html>
@@ -14,14 +14,14 @@
 <c:set var="dis" value=""/>
 <html lang="es">
     <head>
-        <%@include file="/INC/metas.inc"%>
+        <jsp:directive.include file="/INC/metas.inc"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" href="./IMG/ico.png" type="image/x-icon">
         <link rel="stylesheet" href="./CSS/verCarrito.css">
         <title>Factura</title>
     </head>
     <body>
-        <%@include file="/INC/header.inc"%>
+        <jsp:directive.include file="/INC/header.inc"/>
         <div class="instr">
             <p>Esta viendo su factura, gracias por confiar en nosotros, para terminar pulse en el botón</p>
         </div>

@@ -4,21 +4,21 @@
     Author     : Pedro Lazaro
 --%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
 <!DOCTYPE html>
 <html>
 <c:set var="carrito" value="${sessionScope.carrito}"/>
 <c:set var="dis" value=""/>
 <html lang="es">
     <head>
-        <%@include file="/INC/metas.inc"%>
+        <jsp:directive.include file="/INC/metas.inc"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" href="./IMG/ico.png" type="image/x-icon">
         <link rel="stylesheet" href="./CSS/verCarrito.css">
         <title>Carrito</title>
     </head>
     <body>
-        <%@include file="/INC/header.inc"%>
+        <jsp:directive.include file="/INC/header.inc"/>
         <div class="instr">
             <p>Estás viendo el carrito, puedes añadir un producto, o varios, así como eliminarlos. También puedes vaciar el carrito, finalizar la compra o seguir comprando.</p>
         </div>
