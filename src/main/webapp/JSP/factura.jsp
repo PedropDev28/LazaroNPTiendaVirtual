@@ -40,7 +40,7 @@
                 <td>${item.getCantidad()}</td>
                 <td>${item.getNombre()}</td>
                 <td>${item.getPrecioUnitario()} €</td>
-                <c:set var="total" value="${metodos.calcularTotal(item.getPrecioUnitario(), item.getCantidad())}" scope="page"/>
+                <c:set var="total" value="${metodos.calcularTotal(item.getPrecioUnitario(), item.getCantidad())}"/>
                 <td>${total} €</td>
                 <c:choose>
                     <c:when test="${item.getCantidad() == 1}">
@@ -50,7 +50,7 @@
                     <c:set var="dis" value=""/>
                     </c:otherwise>
                 </c:choose>
-                <c:set var="totalSinIVA" value="${totalSinIVA + item.getPrecioUnitario() * item.getCantidad()}" scope="page" />
+                <c:set var="totalSinIVA" value="${totalSinIVA + item.getPrecioUnitario() * item.getCantidad()}"/>
             </tr>
         </c:forEach>
         <tr>
@@ -59,7 +59,7 @@
         </tr>
         <tr>
             <td colspan="3">IVA (21%)</td>
-            <c:set var="totaliva" value="${metodos.resultadoIva(totalSinIVA)}" scope="page"/>
+            <c:set var="totaliva" value="${metodos.resultadoIva(totalSinIVA)}"/>
             <td>${totaliva} €</td>
         </tr>
         <tr>
