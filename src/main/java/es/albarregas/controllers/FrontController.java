@@ -93,7 +93,11 @@ public class FrontController extends HttpServlet {
                         a.setCantidad(Integer.parseInt(cantidad));
                         carrito.add(a);
                     }
-                }       
+                }
+
+                if(carrito.isEmpty()){
+                    request.getSession().setAttribute("disabled", "disabled");
+                }
                 Cookie carritoCookie = new Cookie("carritoCookie", calc.listToCookie(carrito));
                 carritoCookie.setMaxAge(86400);
                 response.addCookie(carritoCookie);
