@@ -11,10 +11,9 @@
 <html lang="es">
     <head>
         <jsp:directive.include file="/INC/metas.inc"/>
-        <meta http-equiv="Refresh" content="3;url=CargaController">
+        <meta http-equiv="Refresh" content="3; url=CargaController">
         <link rel="shortcut icon" href="./IMG/ico.png" type="image/x-icon">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link favicon="${contextPath}/IMG/logo.ico" rel="icon" type="image/x-icon" />
         <link href="${contextPath}/CSS/carga.css" rel="stylesheet" type="text/css"/>
         <title>Bienvenido</title>
     </head>
